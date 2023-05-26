@@ -1,0 +1,26 @@
+class Solution {
+    public List<List<String>> groupAnagrams(String[] strs) {
+        Map<Map<Character,Integer>, List<String>> map=new HashMap<>();
+        for(String str: strs){
+            Map<Character, Integer> frequencyMap=new HashMap<>();
+            for(Character ch:str.toCharArray()){
+                frequencyMap.put(ch, frequencyMap.getOrDefault(ch, 0)+1);
+            }
+            if(map.containsKey(frequencyMap)==false){
+                List<String> list=new ArrayList<>();
+                list.add(str);
+                map.put(frequencyMap,list);
+            }
+            else{
+                List<String> list=map.get(frequencyMap);
+                list.add(str);
+            }
+        }
+        
+        List<List<String>> result=new ArrayList<>();
+        for(List<String> val:map.values()){
+            result.add(val);
+        }
+        return result;
+    }
+}
