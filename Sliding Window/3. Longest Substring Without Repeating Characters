@@ -1,0 +1,26 @@
+class Solution {
+    public int lengthOfLongestSubstring(String s) {
+        int n = s.length();
+        int result = 0;
+        int i = 0, j = 0;
+        Set<Character> set = new HashSet<>();
+
+        while (j < n) {
+            // Release
+            while (set.contains(s.charAt(j))) {
+                set.remove(s.charAt(i));
+                i++;
+            }
+
+            // Acquire
+            set.add(s.charAt(j));
+
+            // Update result
+            result = Math.max(result, j - i + 1);
+            j++;
+        }
+        return result;
+    }
+}
+
+// SC: O(min(n, m)), where n is the length of the input string 's', and m is the size of the character set 
