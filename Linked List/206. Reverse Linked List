@@ -1,0 +1,18 @@
+class Solution {
+    public ListNode reverseList(ListNode head) {
+        if(head==null || head.next==null){
+            return head;
+        }
+        ListNode prevNode=null;
+        ListNode currNode=head;
+        ListNode nextNode=null;
+        while(currNode!=null){
+            nextNode=currNode.next;
+            currNode.next=prevNode;
+            prevNode=currNode;
+            currNode=nextNode;
+        }
+        head=prevNode; //because previous node is pointing to last null node
+        return head;
+    }
+}
